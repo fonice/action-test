@@ -1,5 +1,7 @@
 name: 打包vitepress
-
+# 指定分支
+branches:
+    - main
 on: push
 
 jobs:
@@ -23,7 +25,11 @@ jobs:
       run: npm install
       
     - name: 打包
-      run: npm run build
+      run: npm run docs:build
 
-
+     - name: 部署到github pages
+       uses: peaceiris/actions-gh-pages@v4
+       with:
+         branch: main
+         florder: build
 
