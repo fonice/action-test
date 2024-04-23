@@ -4,8 +4,11 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  contents: write
+
 jobs:
-  job1:
+  pnpm-build:
     name: 打包vitepress
     runs-on: ubuntu-latest
 
