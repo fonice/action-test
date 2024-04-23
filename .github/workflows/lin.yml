@@ -1,12 +1,32 @@
+name: 打包vitepress
+
 on: push
 
 jobs:
   job1:
+    nmae: 打包vitepress
     runs-on: ubuntu-latest
+
     steps:
-    - run: pwd
-    - run: ls
-    - run: node --version
-    - run: npm --version
+    - nmae: 下载代码
+      uses: actions/checkout@v4
+    
+    - name: 获取分支
+      id: branch
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+
+    - name: 打印环境
+      run: |
+        pwd
+        ls
+        node --version
+        npm --version
+
+    - name: 安装依赖
+      run: npm install
+      
+    - name: 打包
+      run: npm run build
+
 
 
