@@ -1,8 +1,8 @@
 name: 打包vitepress
 # 指定分支
-branches:
-    - main
-on: push
+on:
+  push:
+    branches: [ main ]
 
 jobs:
   job1:
@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: 下载代码
       uses: actions/checkout@v4
+      with:
+        ref: 'main'
 
 
     - name: 打印环境
@@ -21,15 +23,28 @@ jobs:
         node --version
         npm --version
 
+        - name: Install yarn
+        run: corepack enable
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'yarn'
+
     - name: 安装依赖
-      run: npm install
+      run: yarn install
       
     - name: 打包
       run: npm run docs:build
 
-    #  - name: 部署到github pages
-    #    uses: peaceiris/actions-gh-pages@v4
-    #    with:
-    #      branch: main
-    #      florder: build
+    # 将文档产物提交到gh-pages分支
+    - name: Deploy for Gitee 🚀
+      uses: JamesIves/github-pages-deploy-action@v4.4.1
+      with:
+        branch: gh-pages
+        folder: docs/.vitepress/dist
+        # enable single-commit to reduce the repo size
+        single-commit: true
+        clean: true
+
 
