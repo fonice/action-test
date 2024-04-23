@@ -10,10 +10,7 @@ jobs:
     steps:
     - nmae: 下载代码
       uses: actions/checkout@v4
-    
-    - name: 获取分支
-      id: branch
-        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+
 
     - name: 打印环境
       run: |
