@@ -23,8 +23,8 @@ jobs:
         node --version
         npm --version
 
-        - name: Install yarn
-        run: corepack enable
+    - name: Install yarn
+      run: corepack enable
 
     - uses: actions/setup-node@v3
       with:
