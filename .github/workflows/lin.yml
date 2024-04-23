@@ -4,11 +4,11 @@ on: push
 
 jobs:
   job1:
-    nmae: 打包vitepress
+    name: 打包vitepress
     runs-on: ubuntu-latest
 
     steps:
-    - nmae: 下载代码
+    - name: 下载代码
       uses: actions/checkout@v4
 
 
