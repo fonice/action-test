@@ -23,16 +23,16 @@ jobs:
         node --version
         npm --version
 
-    - name: Install yarn
+    - name: Install pnpm
       run: corepack enable
 
     - uses: actions/setup-node@v3
       with:
         node-version: '18'
-        cache: 'yarn'
+        cache: 'pnpm'
 
     - name: 安装依赖
-      run: yarn install
+      run: pnpm install
       
     - name: 打包
       run: npm run docs:build
